@@ -3,13 +3,14 @@ body{
     width:100;
     font-family: 'Poppins', sans-serif;
   }
-  input{
+  #input{
       position: relative;
       width: 96%;
-      min-height: 30px;
+      min-height: 20px;
       border-radius:5px;
       font-size: medium;
-      padding: 10px;
+      padding: 3px;
+      border: 2px solid black;
   }
   h1{
       font-size: 2.5rem;
@@ -85,3 +86,10 @@ body{
   .result p{
     font-size: 1.2rem;
   }
+  #list{
+    overflow-y:scroll;
+    height: 300px;;
+  }
+  [contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}

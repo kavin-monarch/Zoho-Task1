@@ -1,7 +1,7 @@
+
 let input = document.getElementById('input');
 let list  = document.getElementById('list');
 let display_area= document.getElementById('display_area');
-
 let selected=0;
 let list_length;
 let array;
@@ -24,7 +24,9 @@ let database =[
     'Zoho Recruit',
     'Zoho One'
 ]
-
+window.onload= function(){
+    list.style.overflow = 'hidden';
+};
 let feature =(key)=>{
 
     let arr=[];
@@ -39,6 +41,12 @@ let feature =(key)=>{
 let renderList =(list_array,index)=>{
     list_length=list_array.length;
     array=list_array;
+    if(list_length>4){
+        list.style.overflow = 'scroll';
+    }
+    else{
+        list.style.overflow = 'hidden';
+    }
     for(i=0;i<list_array.length;i++){
         if(i==index){
             list.innerHTML+='<li id="current">'+list_array[i]+'</li>'
@@ -50,9 +58,9 @@ let renderList =(list_array,index)=>{
     }
 }
 input.addEventListener('keyup',(event)=>{
-    let key=input.value.toLowerCase();
-
+    let key=input.innerText.toLowerCase();
     if(key.length>0){
+        
         let list_array=[];
 
         list.innerHTML='';
@@ -62,6 +70,7 @@ input.addEventListener('keyup',(event)=>{
     }
     else{
         list.innerHTML='';
+        list.style.overflow = 'hidden';
     }
 });
 
@@ -70,21 +79,23 @@ document.addEventListener('keydown', function(e) {
     let code=e.keyCode
     if(code==38){
         if(selected-1>=0){
-            y-=50;
-            window.scrollTo(0, y);
+            y-=64;
+            list.scrollTo(0, y);
             selected--;
         }
     }
     else if(code==40){
         if(selected+1<list_length){
-            window.scrollTo(0, y);
-            y+=50;
+            list.scrollTo(0, y);
+            y+=60;
             selected++;
         }
     }
     else if(code==13){
+        e.preventDefault();
         display_area.innerHTML='';
         display_area.innerHTML+=array[selected];
+        input.innerText=array[selected];
         y=0;
         window.scrollTo(0, y);
 
