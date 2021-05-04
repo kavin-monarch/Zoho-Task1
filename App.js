@@ -32,7 +32,6 @@ let feature =(key)=>{
 }
 input.addEventListener('keyup',(event)=>{
     let key=input.value.toLowerCase();
-    console.log(key);
 
     if(key.length>0){
         let list_array=[];
@@ -41,9 +40,6 @@ input.addEventListener('keyup',(event)=>{
         list_array=feature(key);
 
         for(i=0;i<list_array.length;i++){
-            // console.log(list_array[i]);
-            // list.innerHTML+='<li>'+list_array[i]+'</li>';
-
             list.innerHTML+='<a target=”_blank” href="https://www.google.com/search?q='+list_array[i]+'"><li>'+list_array[i]+'</li></a>'
         }
     }
