@@ -48,7 +48,7 @@ body{
   header{
     display:flex;
     align-items: center;
-    margin: 0 0 140px 50px;
+    margin: 0 0 10px 50px;
   }
 
   a{
@@ -65,10 +65,23 @@ body{
   }
 
   #svg{
-    
     width: 5%;
     height: 25px;
   }
   #Powered{
       margin-left: 50%;
+  }
+  #current{
+    border: 4px solid rgb(80, 168, 39);
+  }
+
+  .result{
+    display: flex;
+    margin-left: 100px;
+  }
+  .result h3{
+    margin-right: 10px;
+  }
+  .result p{
+    font-size: 1.2rem;
   }
