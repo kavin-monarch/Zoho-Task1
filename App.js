@@ -6,14 +6,17 @@ let selected=0;
 let list_length;
 let array;
 let key='';
+let key2='';
 
 let database =[
-   'Dharnish',
-   'Kavin Prasanth',
-   'Karthik',
-   'Jack',
-   'Jackson',
-   'Master'
+   'Dharnish','Kavin Prasanth',
+   'Karthik','Jack',
+   'Jackson','Master',
+   'Shibu','Seena',
+   'Nathun','Raja',
+   'Ajith','Guru',
+   'Hari','Sankar',
+   'Kalai'
 ]
 window.onload= function(){
     list.style.overflow = 'hidden';
@@ -49,6 +52,7 @@ let renderList =(list_array,index)=>{
 }
 input.addEventListener('keyup',(event)=>{
     key=input.innerText.toLowerCase();
+
     if(event.key==='@'){
         start=key.length-1;
         flag=true;
@@ -96,41 +100,27 @@ document.addEventListener('keydown', function(e) {
         }
     }
     else if(code==13){
-        e.preventDefault();
-        display_area.innerHTML='';
-        display_area.innerHTML+=array[selected];
 
-        let current_length=array[selected].length+2;
-        // input.innerHTML="<h1>helllo</h1>";
-
-        let v =create(array[selected]);
-        input.prepend(v);
-        // console.log(start);
-        // console.log(key.length);
-        // console.log(current_length);
-        // console.log(input.innerText);
-        // let t=input.innerText;
-        // t.replace(key,'');
-        // console.log(t);
-        input.prepend();
-        y=0;
-        window.scrollTo(0, y);
-
+        if(flag==true){
+            e.preventDefault();
+            if(array.length>0){
+                display_area.innerHTML='';
+                display_area.innerHTML+=array[selected];
+                let v =create(array[selected]);
+                input.prepend(v);
+                y=0;
+                window.scrollTo(0, y);
+            }
+        }
     }
     else if(code==8){
         selected=0;
     }
 });
 
-
-let rem =()=>{
-    var sample=(String) (input.innerText);
-    return sample.replace(key,' ');
-}
-
 let create =(x)=>{
     let v =document.createElement('span');
-        v.innerText='#'+x+' ';
+        v.innerText=x+' ';
         v.setAttribute('class','span');
         v.setAttribute('contentEditable','false');
     return v;

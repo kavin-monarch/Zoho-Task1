@@ -94,5 +94,8 @@ body{
     content:attr(data-text)
 }
 span{
-  color: greenyellow;
+  color: rgb(214, 46, 192);
+  border-radius: 10px;
+  border:2px solid#ccc;
+  margin-right: 5px;
 }
