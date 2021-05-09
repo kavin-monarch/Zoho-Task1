@@ -5,24 +5,18 @@ let display_area= document.getElementById('display_area');
 let selected=0;
 let list_length;
 let array;
-
+let key='';
+let key2='';
 
 let database =[
-    'Zoho',
-    'Zoho Mail',
-    'Zoho Team Inbox',
-    'Zoho People',
-    'Zoho Books',
-    'Zoho Inventory',
-    'Zoho CRM',
-    'Zoho Sites',
-    'Zoho Projects',
-    'Zoho Desk',
-    'Zoho Social',
-    'Zoho SalesIQ',
-    'Zoho Expense',
-    'Zoho Recruit',
-    'Zoho One'
+   'Dharnish','Kavin Prasanth',
+   'Karthik','Jack',
+   'Jackson','Master',
+   'Shibu','Seena',
+   'Nathun','Raja',
+   'Ajith','Guru',
+   'Hari','Sankar',
+   'Kalai'
 ]
 window.onload= function(){
     list.style.overflow = 'hidden';
@@ -52,27 +46,41 @@ let renderList =(list_array,index)=>{
             list.innerHTML+='<li id="current">'+list_array[i]+'</li>'
         }
         else{
-
             list.innerHTML+='<li>'+list_array[i]+'</li>'
         }
     }
 }
 input.addEventListener('keyup',(event)=>{
-    let key=input.innerText.toLowerCase();
-    if(key.length>0){
-        
+    key=input.innerText.toLowerCase();
+
+    if(event.key==='@'){
+        start=key.length-1;
+        flag=true;
+    }
+    if(event.key===' ' && flag==true){
+        flag=false;
+    }
+    if(flag==true){
         let list_array=[];
-
         list.innerHTML='';
-        list_array=feature(key);
-
+        list_array=feature(key.substring(start+1, key.length-1));
         renderList(list_array,selected);
     }
     else{
         list.innerHTML='';
-        list.style.overflow = 'hidden';
+        list.style.overflow ='hidden';
     }
 });
+function moveCursorToEnd(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
+}
 
 y=0;
 document.addEventListener('keydown', function(e) {
@@ -92,20 +100,31 @@ document.addEventListener('keydown', function(e) {
         }
     }
     else if(code==13){
-        e.preventDefault();
-        display_area.innerHTML='';
-        display_area.innerHTML+=array[selected];
-        input.innerText=array[selected];
-        y=0;
-        window.scrollTo(0, y);
 
+        if(flag==true){
+            e.preventDefault();
+            if(array.length>0){
+                display_area.innerHTML='';
+                display_area.innerHTML+=array[selected];
+                let v =create(array[selected]);
+                input.prepend(v);
+                y=0;
+                window.scrollTo(0, y);
+            }
+        }
     }
     else if(code==8){
         selected=0;
     }
 });
 
-
+let create =(x)=>{
+    let v =document.createElement('span');
+        v.innerText=x+' ';
+        v.setAttribute('class','span');
+        v.setAttribute('contentEditable','false');
+    return v;
+}
 
 
 

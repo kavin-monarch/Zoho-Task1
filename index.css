@@ -93,3 +93,9 @@ body{
   [contentEditable=true]:empty:not(:focus):before{
     content:attr(data-text)
 }
+span{
+  color: rgb(214, 46, 192);
+  border-radius: 10px;
+  border:2px solid#ccc;
+  margin-right: 5px;
+}
